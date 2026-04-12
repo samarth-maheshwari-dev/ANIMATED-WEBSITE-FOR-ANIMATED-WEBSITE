@@ -36,18 +36,23 @@ export default function Hero() {
       className="relative h-screen min-h-[600px] flex items-center overflow-hidden bg-background-dark"
     >
       {/* Background Video with Parallax */}
-      <video
-        ref={bgRef}
-        src={heroVid}
-        poster={heroNight}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="hero-bg-image absolute top-[-15%] left-0 w-full h-[130%] object-cover will-change-transform opacity-60"
-      />
+      <div ref={bgRef} className="absolute top-[-15%] left-0 w-full h-[130%] gpu-accelerated bg-[#0A0A0A]" style={{ willChange: 'transform' }}>
+        <video
+          src={heroVid}
+          poster={heroNight}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          className="w-full h-full object-cover opacity-60"
+        />
+      </div>
 
-      {/* Hero Content */}
+      {/* Immediate background color to prevent white flash */}
+      <div className="absolute inset-0 bg-[#0A1A1A] -z-10" aria-hidden="true" />
+
+      {/* Hero Content - Critical for LCP */}
       <div className="section-container relative z-20 pt-20">
         <div className="max-w-4xl">
           {/* Badge */}
@@ -62,18 +67,15 @@ export default function Hero() {
             <span>Luxury Dining · 10,742 Reviews · Established 2020</span>
           </motion.div>
 
-          {/* Headline */}
+          {/* Headline - IMMEDIATELY visible, no delay */}
           <h1 className="font-display text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] mb-8">
             {titleWords.map((word, i) => (
-              <motion.span
+              <span
                 key={i}
-                initial={{ y: 60, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 + i * 0.1, ease: 'easeOut' }}
                 className="inline-block mr-[0.2em] bg-gradient-to-br from-white via-white to-primary/40 bg-clip-text text-transparent"
               >
                 {word}
-              </motion.span>
+              </span>
             ))}
           </h1>
 

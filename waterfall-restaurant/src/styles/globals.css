@@ -4,12 +4,15 @@
 
 @layer base {
   /* Prevent horizontal overflow on all viewports */
-  html, body {
+  html {
     overflow-x: hidden;
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
   }
 
   body {
+    overflow-x: hidden;
+    overscroll-behavior: none;
+    scroll-behavior: auto !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     font-family: 'Inter', sans-serif;
@@ -99,4 +102,17 @@
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #F9E79F;
+}
+
+/* GPU Acceleration for Smooth Animations */
+.gpu-accelerated {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+.scroll-reveal {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  will-change: transform, opacity;
 }

@@ -25,18 +25,32 @@ export default function App() {
   useEffect(() => {
     // ── Lenis smooth scroll initialisation ──
     const lenis = new Lenis({
-      lerp: 0.8,         // Ultra-responsive, almost native
-      duration: 0.5,      // Snaps instantly
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 2.5, // High travel per scroll
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
     })
 
-    // Sync Lenis with GSAP ticker so ScrollTrigger positions are always correct
-    lenis.on('scroll', ScrollTrigger.update)
-    gsap.ticker.add((time) => lenis.raf(time * 1000))
+    // Sync Lenis with GSAP ticker
+    function update(time) {
+      lenis.raf(time * 1000)
+    }
+
+    gsap.ticker.add(update)
     gsap.ticker.lagSmoothing(0)
+
+    // Sync ScrollTrigger with Lenis
+    lenis.on('scroll', () => {
+      ScrollTrigger.update()
+    })
+
+    // Force ScrollTrigger refresh after initial load to prevent layout jumps
+    setTimeout(() => {
+      ScrollTrigger.refresh()
+    }, 100)
 
     // ── Anchor link click handler — works WITH Lenis ──
     const handleAnchorClick = (e) => {
@@ -45,7 +59,7 @@ export default function App() {
         e.preventDefault()
         const target = document.querySelector(href)
         if (target) {
-          lenis.scrollTo(target, { offset: -80 }) // -80px = navbar height clearance
+          lenis.scrollTo(target, { offset: -80, duration: 1.5 })
         }
       }
     }
@@ -56,6 +70,7 @@ export default function App() {
     // ── Cleanup — prevents memory leaks and duplicate triggers on re-render ──
     return () => {
       lenis.destroy()
+      gsap.ticker.remove(update)
       ScrollTrigger.getAll().forEach(t => t.kill())
       document.querySelectorAll('a[href^="#"]').forEach(a =>
         a.removeEventListener('click', handleAnchorClick)

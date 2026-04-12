@@ -22,16 +22,16 @@ export default function Gallery() {
   }
 
   return (
-    <section id="gallery" className="bg-teal-950 py-24 relative z-10">
+    <section id="gallery" className="bg-background-dark py-24 relative z-10 border-y border-primary/5 scroll-reveal">
       <div className="section-container">
         <div className="text-center mb-16">
           <SectionLabel>OUR AMBIANCE</SectionLabel>
           <h2 className="font-display text-white text-4xl md:text-5xl font-bold">
-            The <span className="text-teal-400">Visual</span> Journey
+            The <span className="text-primary">Visual</span> Journey
           </h2>
         </div>
 
-        {/* Masonry Grid (CSS Columns Native approach) */}
+        {/* Masonry Grid */}
         <div 
           ref={revealRef} 
           className="masonry-grid"
@@ -57,11 +57,11 @@ export default function Gallery() {
                     decoding="async"
                     width={800}
                     height={item.span === 'large' ? 1200 : 800}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 group-hover:brightness-110"
                   />
                   {/* Hover Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-teal-950/85 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
-                    <span className="font-accent italic text-teal-300 text-lg translate-y-4 group-hover:translate-y-0 transition-transform duration-400">
+                  <div className="absolute inset-0 bg-gradient-to-t from-background-dark/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-end p-5">
+                    <span className="font-accent italic text-primary text-xl translate-y-4 group-hover:translate-y-0 transition-transform duration-400">
                       {item.tag}
                     </span>
                   </div>
@@ -69,16 +69,16 @@ export default function Gallery() {
               ) : (
                 /* Placeholder Item */
                 <div 
-                  className={`flex flex-col items-center justify-center p-8 bg-teal-900 border border-teal-800 rounded-2xl ${
+                  className={`flex flex-col items-center justify-center p-8 bg-stone-900 border border-primary/10 rounded-2xl ${
                     item.span === 'large' ? 'min-h-[400px]' : 'min-h-[250px]'
                   }`}
-                  style={{ background: 'linear-gradient(135deg, #0D9488 0%, #134E4A 50%, #042F2E 100%)' }}
+                  style={{ background: 'linear-gradient(135deg, #161616 0%, #0A0A0A 100%)' }}
                 >
-                   <span className="font-accent italic text-teal-300/40 text-lg text-center leading-tight">
+                   <span className="font-accent italic text-primary/30 text-lg text-center leading-tight">
                     {item.tag}
                   </span>
-                  <p className="font-body text-stone-500 text-[10px] mt-2 uppercase tracking-widest opacity-40">
-                    Coming Soon
+                  <p className="font-body text-stone-600 text-[10px] mt-2 uppercase tracking-widest opacity-60 font-bold">
+                    In Development
                   </p>
                 </div>
               )}
@@ -92,7 +92,7 @@ export default function Gallery() {
           close={() => setLightboxIndex(-1)}
           index={lightboxIndex}
           slides={lightboxSlides}
-          styles={{ container: { backgroundColor: "rgba(4, 47, 46, 0.95)" } }}
+          styles={{ container: { backgroundColor: "rgba(10, 10, 10, 0.98)" } }}
         />
       </div>
     </section>

@@ -16,6 +16,9 @@ export default defineConfig({
     }
   },
   build: {
+    minify: 'esbuild',
+    target: 'esnext',
+    sourcemap: false,
     rollupOptions: {
       output: {
         // Code-split heavy libraries to prevent one giant bundle
@@ -23,8 +26,12 @@ export default defineConfig({
           'vendor-react': ['react', 'react-dom'],
           'vendor-animation': ['gsap', 'framer-motion'],
           'vendor-lightbox': ['yet-another-react-lightbox'],
-        }
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
+        assetFileNames: 'assets/[ext]/[name]-[hash].[ext]'
       }
-    }
+    },
+    chunkSizeWarningLimit: 500
   }
 })

@@ -3,12 +3,27 @@ import SectionLabel from '../ui/SectionLabel';
 import { CircularTestimonials } from '../ui/CircularTestimonials';
 import { reviewsData } from '../../data/reviewsData';
 import StarRating from '../ui/StarRating';
+import { SparklesCore } from '../ui/SparklesCore';
 
 const Reviews = () => {
   return (
     <section id="reviews" className="py-24 bg-background-dark relative overflow-hidden">
+      {/* Sparkles Background */}
+      <div className="absolute inset-0 z-0">
+        <SparklesCore
+          id="reviews-sparkles"
+          background="transparent"
+          minSize={0.4}
+          maxSize={1}
+          particleDensity={300}
+          className="w-full h-full"
+          particleColor="#D4AF37"
+          speed={1.5}
+        />
+      </div>
+      
       {/* Background Decorative Element */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-10 pointer-events-none">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] opacity-10 pointer-events-none z-0">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary via-transparent to-transparent" />
       </div>
 

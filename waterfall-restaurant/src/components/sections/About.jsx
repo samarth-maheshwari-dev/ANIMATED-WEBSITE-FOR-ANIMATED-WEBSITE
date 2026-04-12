@@ -18,7 +18,7 @@ export default function About() {
       <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           
-          <div ref={leftColRef}>
+          <div ref={leftColRef} className="scroll-reveal">
             <SectionLabel>OUR STORY</SectionLabel>
             <h2 className="font-display text-white text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-8">
               More Than a <span className="text-primary">Restaurant</span>
@@ -32,7 +32,7 @@ export default function About() {
               </p>
             </div>
 
-            <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12">
+            <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-12 scroll-reveal">
               {USP_CARDS.map((usp, i) => (
                 <div 
                   key={i} 
@@ -52,7 +52,7 @@ export default function About() {
             </div>
           </div>
 
-          <div ref={rightColRef} className="relative group lg:mt-0 mt-12">
+          <div ref={rightColRef} className="relative group lg:mt-0 mt-12 scroll-reveal">
             <div className="relative rounded-2xl overflow-hidden shadow-premium border-2 border-primary/30 transform rotate-1 transition-transform duration-500 group-hover:rotate-0">
               <img
                 src={aboutDay}

@@ -14,7 +14,7 @@ export default function Menu() {
     : MENU_ITEMS.filter(item => item.category === activeCategory)
 
   return (
-    <section id="menu" ref={sectionRef} className="bg-background-dark py-24 relative z-10">
+    <section id="menu" ref={sectionRef} className="bg-background-dark py-24 relative z-10 scroll-reveal">
       <div className="section-container">
         <div className="text-center mb-16">
           <SectionLabel>EXPLORE THE MENU</SectionLabel>
@@ -29,6 +29,8 @@ export default function Menu() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
+              aria-label={`View ${category} menu items`}
+              aria-pressed={activeCategory === category}
               className={`whitespace-nowrap px-8 py-3 rounded-full font-body text-xs uppercase tracking-widest font-bold transition-all duration-500 border-2 ${
                 activeCategory === category
                   ? 'bg-primary text-background-dark border-primary shadow-[0_0_20px_rgba(212,175,55,0.3)]'
