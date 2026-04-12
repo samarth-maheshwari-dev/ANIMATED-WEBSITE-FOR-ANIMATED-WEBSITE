@@ -28,14 +28,14 @@ const Reviews = () => {
       </div>
 
       <div className="container px-6 mx-auto relative z-10">
-        <div className="flex flex-col items-center mb-20 text-center">
+        <div className="flex flex-col items-center mb-12 sm:mb-20 text-center">
           <SectionLabel>Client Voices</SectionLabel>
-          <div className="flex flex-col items-center mt-4">
-            <span className="text-7xl md:text-8xl font-serif text-primary leading-none">4.8</span>
-            <div className="mt-4">
+          <div className="flex flex-col items-center mt-2 sm:mt-4">
+            <span className="text-6xl sm:text-7xl md:text-8xl font-serif text-primary leading-none">4.8</span>
+            <div className="mt-2 sm:mt-4 scale-75 sm:scale-100">
               <StarRating rating={5} />
             </div>
-            <p className="text-stone-500 mt-4 uppercase tracking-widest text-xs">
+            <p className="text-stone-500 mt-4 uppercase tracking-widest text-[10px] sm:text-xs">
               Based on <span className="text-white font-bold">10,742+</span> Verified Logs
             </p>
           </div>

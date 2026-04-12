@@ -15,13 +15,13 @@ const Specialty = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-primary/20 via-transparent to-transparent" />
       </div>
 
-      <div className="container px-6 mx-auto relative z-10">
-        <div className="flex flex-col items-center mb-16 text-center">
+      <div className="section-container relative z-10">
+        <div className="flex flex-col items-center mb-12 sm:mb-16 text-center">
           <SectionLabel>Chef's Private Reserve</SectionLabel>
-          <h2 className="text-4xl md:text-5xl font-serif text-white mt-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-serif text-white mt-4">
             The Signature <span className="text-primary">Experience</span>
           </h2>
-          <p className="text-stone-500 mt-6 max-w-2xl text-lg">
+          <p className="text-stone-500 mt-6 max-w-2xl text-base sm:text-lg">
             Reserved for our most discerning guests. An immersive dining concept where 
             flavor meets the art of the waterfall.
           </p>

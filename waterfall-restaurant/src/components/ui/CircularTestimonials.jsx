@@ -46,8 +46,10 @@ export const CircularTestimonials = ({
   function calculateGap(width) {
     const minWidth = 1024;
     const maxWidth = 1456;
-    const minGap = 60;
-    const maxGap = 120; // Increased for more drama
+    const minGap = 40; // Reduced for mobile
+    const maxGap = 120;
+    
+    if (width < 640) return width * 0.15; // 15% of width for mobile
     if (width <= minWidth) return minGap;
     if (width >= maxWidth)
       return Math.max(minGap, maxGap + 0.06018 * (width - maxWidth));

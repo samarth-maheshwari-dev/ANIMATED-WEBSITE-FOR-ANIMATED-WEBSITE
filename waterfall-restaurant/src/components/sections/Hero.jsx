@@ -68,7 +68,7 @@ export default function Hero() {
           </motion.div>
 
           {/* Headline - IMMEDIATELY visible, no delay */}
-          <h1 className="font-display text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[0.9] mb-8">
+          <h1 className="font-display text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] sm:leading-[0.9] mb-6 sm:mb-8">
             {titleWords.map((word, i) => (
               <span
                 key={i}
@@ -84,7 +84,7 @@ export default function Hero() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.2, ease: 'easeOut' }}
-            className="font-body text-stone-200 text-xl md:text-2xl max-w-2xl mb-12 leading-relaxed opacity-90"
+            className="font-body text-stone-300 text-lg md:text-2xl max-w-2xl mb-10 sm:mb-12 leading-relaxed opacity-90"
           >
             Indore's most immersive dining experience. Tables by the waterfall. BBQ at your seat. Memories dipped in gold.
           </motion.p>

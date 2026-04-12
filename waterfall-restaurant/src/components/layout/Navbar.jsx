@@ -82,36 +82,52 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background-dark border-b border-primary/10 overflow-hidden"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[90] lg:hidden bg-background-dark/98 backdrop-blur-xl flex flex-col pt-32 px-10"
           >
-            <div className="flex flex-col p-6 gap-6">
-              {NAV_LINKS.map(link => (
-                <a
+            <div className="flex flex-col gap-8">
+              {NAV_LINKS.map((link, i) => (
+                <motion.a
                   key={link.name}
                   href={link.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="font-body text-lg text-stone-300 hover:text-primary transition-colors uppercase tracking-widest text-sm"
+                  className="font-display text-4xl font-bold text-white hover:text-primary transition-colors flex items-center justify-between group"
                 >
-                  {link.name}
-                </a>
+                  <span>{link.name}</span>
+                  <span className="text-primary opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                </motion.a>
               ))}
-              <a
-                href={WHATSAPP_BASE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary w-full"
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
+                className="pt-10 border-t border-primary/10 mt-4"
               >
-                WhatsApp Us
-              </a>
+                <a
+                  href={WHATSAPP_BASE}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full text-center"
+                >
+                  WhatsApp Us
+                </a>
+              </motion.div>
             </div>
+
+            {/* Decorative background element for mobile menu */}
+            <div className="absolute bottom-[-10%] right-[-10%] w-64 h-64 bg-primary/5 rounded-full blur-[100px] -z-1" />
           </motion.div>
         )}
       </AnimatePresence>
