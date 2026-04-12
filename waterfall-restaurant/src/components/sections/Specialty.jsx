@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { GlowingShadow } from '../ui/GlowingShadow';
 import SectionLabel from '../ui/SectionLabel';
 import { Sparkles, Utensils } from 'lucide-react';
+import midnightBBQImg from '../../assets/images/ambiance/Midnight BBQ.png';
 
 const Specialty = () => {
   return (
@@ -30,6 +31,7 @@ const Specialty = () => {
               title: "Midnight BBQ",
               desc: "Live coal grilling at your table by the cascade.",
               icon: <Utensils className="w-8 h-8 text-primary" />,
+              image: midnightBBQImg,
             },
             {
               title: "Waterfall Mist",
@@ -51,6 +53,15 @@ const Specialty = () => {
             >
               <GlowingShadow className="h-full">
                 <div className="flex flex-col items-center text-center p-4">
+                  {item.image && (
+                    <div className="w-full h-48 mb-4 rounded-lg overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="mb-6 p-4 bg-primary/5 rounded-full border border-primary/20 shadow-inner">
                     {item.icon}
                   </div>
