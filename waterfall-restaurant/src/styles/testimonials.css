@@ -7,8 +7,23 @@
 
 .testimonial-grid {
   display: grid;
-  gap: 3rem;
+  gap: 2rem;
   align-items: center;
+}
+
+/* Mobile: stack vertically */
+@media (max-width: 767px) {
+  .testimonial-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .testimonial-content {
+    order: -1;
+  }
+  
+  .testimonial-arrows {
+    justify-content: center;
+  }
 }
 
 .image-container {

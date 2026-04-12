@@ -23,11 +23,13 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
   useEffect(() => {
-    // ── Mobile Detection ──
-    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+    // ── Mobile/Touch Detection ──
+    const isTouchDevice = () => window.matchMedia("(pointer: coarse)").matches;
+    const isMobile = () => window.innerWidth < 768;
 
     // ── Lenis smooth scroll initialisation ──
-    const lenis = isTouchDevice ? null : new Lenis({
+    // Disable Lenis on touch devices to allow native scroll
+    const lenis = isTouchDevice() ? null : new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
@@ -35,6 +37,7 @@ export default function App() {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
+      smoothTouch: false, // Disable smooth touch - use native touch scrolling
     })
 
     // Sync Lenis with GSAP ticker (only if lenis exists)
