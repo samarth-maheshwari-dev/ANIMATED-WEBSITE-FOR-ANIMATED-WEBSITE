@@ -17,8 +17,7 @@ export const GALLERY_ITEMS = [
     category: 'experience', span: 'small',
     alt: 'Floating wooden dining tray on the pool at The Waterfall Restaurant, Indore',
   },
-  {
-    id: 3, src: null, tag: 'Western Sizzler',    category: 'food', span: 'small', alt: 'Western Sizzler dish' },
+  { id: 3, src: null, tag: 'Western Sizzler',    category: 'food', span: 'small', alt: 'Western Sizzler dish' },
   { id: 4, src: null, tag: 'Virgin Mojito',      category: 'food', span: 'small', alt: 'Virgin Mojito beverage' },
   { id: 5, src: null, tag: 'BBQ Experience 🔥',  category: 'ambiance', span: 'large', alt: 'BBQ at table experience' },
   { id: 6, src: null, tag: 'Sizzling Brownie',   category: 'food', span: 'small', alt: 'Sizzling brownie dessert' },

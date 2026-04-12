@@ -4,6 +4,8 @@ import { GlowingShadow } from '../ui/GlowingShadow';
 import SectionLabel from '../ui/SectionLabel';
 import { Sparkles, Utensils } from 'lucide-react';
 import midnightBBQImg from '../../assets/images/ambiance/Midnight BBQ.png';
+import forestPlatterImg from '../../assets/images/ambiance/FOREST PLATTER.png';
+import waterfallMistImg from '../../assets/images/ambiance/Waterfall mist.png';
 
 const Specialty = () => {
   return (
@@ -37,11 +39,13 @@ const Specialty = () => {
               title: "Waterfall Mist",
               desc: "Indore's only table-side molecular gastronomy.",
               icon: <Sparkles className="w-8 h-8 text-primary" />,
+              image: waterfallMistImg,
             },
             {
               title: "Forest Platter",
               desc: "Sourced locally, prepared globally.",
               icon: <Utensils className="w-8 h-8 text-primary" />,
+              image: forestPlatterImg,
             }
           ].map((item, idx) => (
             <motion.div
@@ -51,10 +55,10 @@ const Specialty = () => {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
             >
-              <GlowingShadow className="h-full">
-                <div className="flex flex-col items-center text-center p-4">
+              <GlowingShadow className={`h-full ${item.image ? 'aspect-[3/4]' : 'aspect-[3/2]'}`}>
+                <div className="flex flex-col items-center text-center p-4 h-full">
                   {item.image && (
-                    <div className="w-full h-48 mb-4 rounded-lg overflow-hidden">
+                    <div className="w-full flex-1 mb-4 rounded-lg overflow-hidden">
                       <img 
                         src={item.image} 
                         alt={item.title}
