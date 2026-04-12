@@ -2,6 +2,7 @@ export const WHATSAPP_NUMBER = '917000359623'
 export const WHATSAPP_BASE   = `https://wa.me/${WHATSAPP_NUMBER}`
 import corporateImg from '@assets/images/ambiance/corporate-dinners.png'
 import birthdayImg from '@assets/images/ambiance/birthday-event.png'
+import midnightBBQImg from '@assets/images/ambiance/Midnight BBQ.png'
 
 export const EVENTS = [
   {
@@ -35,5 +36,16 @@ export const EVENTS = [
       'Exclusive poolside access with ambient lighting, floating tray service, and a curated evening menu.',
     whatsappMessage:
       'Hi! I want to book the Poolside Special Evening at The Waterfall Restaurant, Indore.',
+  },
+  {
+    id: 4,
+    emoji: '🔥',
+    title: 'Midnight BBQ',
+    image: midnightBBQImg,
+    subtitle: 'Late-night grill under the stars',
+    description:
+      'Sizzle into the night with our exclusive midnight BBQ experience. Perfect for night owls and grill enthusiasts.',
+    whatsappMessage:
+      'Hi! I want to book the Midnight BBQ experience at The Waterfall Restaurant, Indore.',
   },
 ]
