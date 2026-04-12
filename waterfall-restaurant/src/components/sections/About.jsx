@@ -16,7 +16,7 @@ export default function About() {
   return (
     <section id="about" className="bg-background-dark py-24 relative z-10 overflow-hidden border-y border-primary/10">
       <div className="section-container">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-16 items-center">
           
           <div ref={leftColRef} className="scroll-reveal">
             <SectionLabel>OUR STORY</SectionLabel>
@@ -52,7 +52,7 @@ export default function About() {
             </div>
           </div>
 
-          <div ref={rightColRef} className="relative group lg:mt-0 mt-12 scroll-reveal">
+          <div ref={rightColRef} className="relative group md:mt-0 mt-12 scroll-reveal">
             <div className="relative rounded-2xl overflow-hidden shadow-premium border-2 border-primary/30 transform rotate-1 transition-transform duration-500 group-hover:rotate-0">
               <img
                 src={aboutDay}

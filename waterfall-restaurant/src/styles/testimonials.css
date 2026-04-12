@@ -20,12 +20,21 @@
 
 .testimonial-image {
   position: absolute;
-  width: 100%;
+  top: 0;
+  left: 5%; /* Give room for staggered layout without clipping */
+  width: 90%;
   height: 100%;
   object-fit: cover;
   border-radius: 1.5rem;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   filter: brightness(0.9);
+}
+
+@media (min-width: 768px) {
+  .testimonial-image {
+    left: 0;
+    width: 100%;
+  }
 }
 
 .testimonial-content {

@@ -48,12 +48,12 @@ export default function Navbar() {
         </a>
 
         {/* Desktop Links */}
-        <div className="hidden lg:flex items-center gap-8">
+        <div className="hidden sm:flex items-center gap-4 md:gap-8">
           {NAV_LINKS.map(link => (
             <a
               key={link.name}
               href={link.href}
-              className={`font-body text-xs uppercase tracking-widest font-medium hover:text-primary transition-all duration-300 ${
+              className={`font-body text-[10px] md:text-xs uppercase tracking-widest font-medium hover:text-primary transition-all duration-300 ${
                 isScrolled ? 'text-stone-300' : 'text-stone-200'
               }`}
             >
@@ -64,15 +64,15 @@ export default function Navbar() {
             href={WHATSAPP_BASE}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary scale-90 py-2.5 shadow-none hover:shadow-primary/40"
+            className="btn-primary scale-75 md:scale-90 py-2.5 shadow-none hover:shadow-primary/40 px-6"
           >
-            WhatsApp Us
+            WhatsApp
           </a>
         </div>
 
         {/* Mobile Toggle */}
         <button
-          className="lg:hidden p-2 text-primary hover:text-white transition-colors"
+          className="sm:hidden p-2 text-primary hover:text-white transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           aria-expanded={isMobileMenuOpen}
           aria-controls="mobile-menu"
@@ -91,7 +91,7 @@ export default function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[90] lg:hidden bg-background-dark/98 backdrop-blur-xl flex flex-col pt-32 px-10"
+            className="fixed inset-0 z-[90] sm:hidden bg-background-dark/98 backdrop-blur-xl flex flex-col pt-32 px-10"
           >
             <div className="flex flex-col gap-8">
               {NAV_LINKS.map((link, i) => (

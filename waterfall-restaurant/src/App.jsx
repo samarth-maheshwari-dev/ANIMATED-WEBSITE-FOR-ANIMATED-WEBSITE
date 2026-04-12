@@ -23,8 +23,11 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
   useEffect(() => {
+    // ── Mobile Detection ──
+    const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
+
     // ── Lenis smooth scroll initialisation ──
-    const lenis = new Lenis({
+    const lenis = isTouchDevice ? null : new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: 'vertical',
@@ -34,32 +37,42 @@ export default function App() {
       touchMultiplier: 2,
     })
 
-    // Sync Lenis with GSAP ticker
+    // Sync Lenis with GSAP ticker (only if lenis exists)
     function update(time) {
-      lenis.raf(time * 1000)
+      if (lenis) lenis.raf(time * 1000)
     }
 
-    gsap.ticker.add(update)
-    gsap.ticker.lagSmoothing(0)
+    if (lenis) {
+      gsap.ticker.add(update)
+      gsap.ticker.lagSmoothing(0)
 
-    // Sync ScrollTrigger with Lenis
-    lenis.on('scroll', () => {
-      ScrollTrigger.update()
-    })
+      // Sync ScrollTrigger with Lenis
+      lenis.on('scroll', () => {
+        ScrollTrigger.update()
+      })
+    }
 
     // Force ScrollTrigger refresh after initial load to prevent layout jumps
     setTimeout(() => {
       ScrollTrigger.refresh()
     }, 100)
 
-    // ── Anchor link click handler — works WITH Lenis ──
+    // ── Anchor link click handler — works WITH/WITHOUT Lenis ──
     const handleAnchorClick = (e) => {
       const href = e.currentTarget.getAttribute('href')
       if (href && href.startsWith('#')) {
         e.preventDefault()
         const target = document.querySelector(href)
         if (target) {
-          lenis.scrollTo(target, { offset: -80, duration: 1.5 })
+          if (lenis) {
+            lenis.scrollTo(target, { offset: -80, duration: 1.5 })
+          } else {
+            // Fallback to native smooth scroll for mobile
+            window.scrollTo({
+              top: target.offsetTop - 80,
+              behavior: 'smooth'
+            })
+          }
         }
       }
     }
@@ -67,10 +80,12 @@ export default function App() {
       a.addEventListener('click', handleAnchorClick)
     )
 
-    // ── Cleanup — prevents memory leaks and duplicate triggers on re-render ──
+    // ── Cleanup ──
     return () => {
-      lenis.destroy()
-      gsap.ticker.remove(update)
+      if (lenis) {
+        lenis.destroy()
+        gsap.ticker.remove(update)
+      }
       ScrollTrigger.getAll().forEach(t => t.kill())
       document.querySelectorAll('a[href^="#"]').forEach(a =>
         a.removeEventListener('click', handleAnchorClick)
