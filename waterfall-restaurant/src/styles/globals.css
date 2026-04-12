@@ -11,7 +11,7 @@
 
   body {
     overflow-x: hidden;
-    overscroll-behavior: none;
+    overscroll-behavior-x: none;
     scroll-behavior: auto !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
