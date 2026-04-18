@@ -1,8 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GlowingShadow } from '../ui/GlowingShadow';
+import { DestinationCard } from '../ui/card-21';
 import SectionLabel from '../ui/SectionLabel';
-import { Sparkles, Utensils } from 'lucide-react';
 import midnightBBQImg from '../../assets/images/ambiance/Midnight BBQ.png';
 import forestPlatterImg from '../../assets/images/ambiance/FOREST PLATTER.png';
 import waterfallMistImg from '../../assets/images/ambiance/Waterfall mist.png';
@@ -27,25 +26,28 @@ const Specialty = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12 w-full max-w-6xl mx-auto">
           {[
             {
               title: "Midnight BBQ",
-              desc: "Live coal grilling at your table by the cascade.",
-              icon: <Utensils className="w-8 h-8 text-primary" />,
+              desc: "Live coal grilling at your table.",
               image: midnightBBQImg,
+              flag: "🔥",
+              themeColor: "15 80% 40%" // Deep burnt orange/red
             },
             {
               title: "Waterfall Mist",
-              desc: "Indore's only table-side molecular gastronomy.",
-              icon: <Sparkles className="w-8 h-8 text-primary" />,
+              desc: "Table-side molecular gastronomy.",
               image: waterfallMistImg,
+              flag: "✨",
+              themeColor: "210 80% 40%" // Deep blue/cyan
             },
             {
               title: "Forest Platter",
               desc: "Sourced locally, prepared globally.",
-              icon: <Utensils className="w-8 h-8 text-primary" />,
               image: forestPlatterImg,
+              flag: "🌿",
+              themeColor: "150 50% 25%" // Deep rich green
             }
           ].map((item, idx) => (
             <motion.div
@@ -54,32 +56,16 @@ const Specialty = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
+              className="w-full h-[400px] md:h-[450px]"
             >
-              <GlowingShadow className={`h-full ${item.image ? 'aspect-[3/4]' : 'aspect-[3/2]'}`}>
-                <div className="flex flex-col items-center text-center p-4 h-full">
-                  {item.image && (
-                    <div className="w-full flex-1 mb-4 rounded-lg overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.title}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  )}
-                  <div className="mb-6 p-4 bg-primary/5 rounded-full border border-primary/20 shadow-inner">
-                    {item.icon}
-                  </div>
-                  <h3 className="text-2xl font-serif text-white mb-4 italic">
-                    {item.title}
-                  </h3>
-                  <p className="text-stone-500 text-sm leading-relaxed">
-                    {item.desc}
-                  </p>
-                  <div className="mt-8 px-8 py-2.5 rounded-full border border-primary/30 text-[10px] font-sans tracking-[0.2em] uppercase text-primary hover:bg-primary hover:text-black transition-all duration-500 cursor-pointer">
-                    Book the Reserve
-                  </div>
-                </div>
-              </GlowingShadow>
+              <DestinationCard
+                imageUrl={item.image}
+                location={item.title}
+                flag={item.flag}
+                stats={item.desc}
+                href="#book-table"
+                themeColor={item.themeColor} 
+              />
             </motion.div>
           ))}
         </div>
